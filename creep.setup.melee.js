@@ -19,7 +19,7 @@ setup.maxCount = function(room){
     return max;
 };
 setup.small = {
-    fixedBody: [MOVE, HEAL],
+    fixedBody: [],
     multiBody: [MOVE, ATTACK],
     minAbsEnergyAvailable: 450,
     minEnergyAvailable: 0.8,
@@ -28,7 +28,7 @@ setup.small = {
     maxWeight: null//(room) => room.defenseMaxWeight(500, 'melee')
 };
 setup.medium = {
-    fixedBody: [MOVE, MOVE, HEAL, HEAL],
+    fixedBody: [],
     multiBody: [MOVE, ATTACK],
     minAbsEnergyAvailable: 900,
     minEnergyAvailable: 0.8,
@@ -38,7 +38,7 @@ setup.medium = {
     maxWeight: null//(room) => room.defenseMaxWeight(1000, 'melee')
 };
 setup.big = {
-    fixedBody: [MOVE, MOVE, MOVE, MOVE, HEAL, HEAL, HEAL, HEAL],
+    fixedBody: [],
     multiBody: [MOVE, ATTACK],
     minAbsEnergyAvailable: 1800,
     minEnergyAvailable: 0.8,
