@@ -19,7 +19,7 @@ setup.maxCount = function(room){
     return max;
 };
 setup.small = {
-    fixedBody: [RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,HEAL,MOVE],
+    fixedBody: [],
     multiBody: [RANGED_ATTACK, MOVE],
     minAbsEnergyAvailable: 1200,
     minEnergyAvailable: 0.5,
@@ -28,7 +28,7 @@ setup.small = {
     maxWeight: null//(room) => room.defenseMaxWeight(1750, 'ranger')
 };
 setup.mid = {
-    fixedBody: [RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,HEAL,MOVE,HEAL,MOVE,HEAL,MOVE],
+    fixedBody: [],
     multiBody: [RANGED_ATTACK, MOVE],
     minAbsEnergyAvailable: 2000,
     minEnergyAvailable: 0.5,
@@ -37,7 +37,7 @@ setup.mid = {
     maxWeight: null//(room) => room.defenseMaxWeight(2000, 'ranger')
 };
 setup.big = {
-    fixedBody: [RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,RANGED_ATTACK,MOVE,HEAL,MOVE,HEAL,MOVE,HEAL,MOVE,HEAL,MOVE,HEAL,MOVE],
+    fixedBody: [],
     multiBody: [RANGED_ATTACK, MOVE],
     minAbsEnergyAvailable: 2500,
     minEnergyAvailable: 0.5,
