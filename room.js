@@ -1229,10 +1229,10 @@ var mod = {
                     this.saveSpawns();
                     this.saveContainers();
                     this.saveLinks();
-                    /*this.terminalBroker();*/
+                    this.terminalBroker();
                 }
                 this.roadConstruction();
-                /*this.springGun();*/
+                this.springGun();
                 this.linkDispatcher();
                 this.statistics();
             }
