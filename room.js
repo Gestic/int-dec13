@@ -1061,7 +1061,7 @@ var mod = {
                 filledStorage.forEach(handleFilledStorage);
             }
         };
-        Room.prototype.terminalBroker = function () {
+        Room.prototype.terminalBroker = function ()/* {
             if( !this.my || !this.terminal ) return;
             let that = this;
             let mineral = this.mineralType;
@@ -1126,7 +1126,7 @@ var mod = {
                     console.log(`Transfering 50k energy from room ${this.name} to ${targetRoom.name}. (${translateErrorCode(response)})`);
                 }
             }
-        };
+        }*/;
         Room.prototype.springGun = function(){
             if( this.my && this.situation.invasion ){
                 let RCL = {
@@ -1135,9 +1135,9 @@ var mod = {
                     3: Creep.setup.melee,
                     4: Creep.setup.ranger,
                     5: Creep.setup.ranger,
-                    6: Creep.setup.warrior,
-                    7: Creep.setup.warrior,
-                    8: Creep.setup.warrior
+                    6: Creep.setup.ranger,
+                    7: Creep.setup.ranger,
+                    8: Creep.setup.ranger
                 };
                 let idleSpawns = this.structures.spawns.filter( s => !s.spawning );
                 for( let iSpawn = 0; iSpawn < idleSpawns.length && this.defenseLevel.sum < this.hostileThreatLevel; iSpawn++ ) {
