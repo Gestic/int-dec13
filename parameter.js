@@ -3,7 +3,7 @@ var mod = {
     HONK: true, // HONK when stored path is blocked by other creeps
     OOPS: true, // Creeps say Oops when dropping energy during dropmining
     SAY_ASSIGNMENT: true, // say a symbol representing the assiged action
-    SAY_PUBLIC: true, // creeps talk public
+    SAY_PUBLIC: false, // creeps talk public
     DEBUG: true, // gimme some more details
     CENSUS_ANNOUNCEMENTS: true, // log birth and death
     SPAWN_INTERVAL: 10, // loops between regular spawn probe
@@ -65,9 +65,9 @@ var mod = {
     ROAD_CONSTRUCTION_INTERVAL: 500,
     ROAD_CONSTRUCTION_MIN_DEVIATION: 1.2,
     ROAD_CONSTRUCTION_ABS_MIN: 3,
-    TIME_ZONE: 1, // zone offset in hours (-12 through +12) from UTC
-    USE_SUMMERTIME: true, // Please define isSummerTime in global.js to suit to your local summertime rules
-    SPAWN_DEFENSE_ON_ATTACK: true, // This will attempt to store enough to have a defense and spawn troops when invaded.
+    TIME_ZONE: -7, // zone offset in hours (-12 through +12) from UTC
+    USE_SUMMERTIME: false, // Please define isSummerTime in global.js to suit to your local summertime rules
+    SPAWN_DEFENSE_ON_ATTACK: false, // This will attempt to store enough to have a defense and spawn troops when invaded.
     MANAGED_CONTAINER_TRIGGER: 0.25, // managed containers get filled below this relative energy amount and emptied when above 1-this value
     ROUTE_PRECALCULATION: false,
     NOTIFICATE_INVADER: false, // Also log common 'Invader' hostiles
