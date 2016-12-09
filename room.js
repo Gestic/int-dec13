@@ -1061,7 +1061,7 @@ var mod = {
                 filledStorage.forEach(handleFilledStorage);
             }
         };
-        Room.prototype.terminalBroker = function ()/* {
+        /*Room.prototype.terminalBroker = function () {
             if( !this.my || !this.terminal ) return;
             let that = this;
             let mineral = this.mineralType;
@@ -1126,7 +1126,7 @@ var mod = {
                     console.log(`Transfering 50k energy from room ${this.name} to ${targetRoom.name}. (${translateErrorCode(response)})`);
                 }
             }
-        }*/
+        };*/
         Room.prototype.springGun = function(){
             if( this.my && this.situation.invasion ){
                 let RCL = {
