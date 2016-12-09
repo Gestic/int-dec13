@@ -3,8 +3,8 @@ setup.minControllerLevel = 3;
 setup.globalMeasurement = true;
 setup.measureByHome = true;
 setup.default = {
-    fixedBody: [WORK, CARRY, MOVE],
-    multiBody: [WORK, CARRY, MOVE],
+    fixedBody: [WORK, WORK, WORK, WORK, WORK],
+    multiBody: [CARRY, MOVE],
     minAbsEnergyAvailable: 400,
     minEnergyAvailable: 0.8,
     maxMulti: 15,
