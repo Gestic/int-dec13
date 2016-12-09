@@ -27,8 +27,8 @@ setup.maxCount = function(room){
 };
 
 setup.small = {
-    fixedBody: [ATTACK,RANGED_ATTACK,HEAL,MOVE,MOVE,MOVE],
-    multiBody: [ATTACK, RANGED_ATTACK, MOVE, MOVE],
+    fixedBody: [],
+    multiBody: [ATTACK, MOVE],
     minAbsEnergyAvailable: 1000,
     minEnergyAvailable: 0.5,
     maxMulti: 3,
@@ -37,7 +37,7 @@ setup.small = {
 };
 setup.mid = {
     fixedBody: [],
-    multiBody: [TOUGH, ATTACK, RANGED_ATTACK, HEAL, MOVE, MOVE],
+    multiBody: [ATTACK, MOVE],
     minAbsEnergyAvailable: 1500,
     minEnergyAvailable: 0.5,
     maxMulti: 5, // 7
@@ -47,7 +47,7 @@ setup.mid = {
 };
 setup.big = {
     fixedBody: [],
-    multiBody: [TOUGH, ATTACK, RANGED_ATTACK, HEAL, MOVE, MOVE],
+    multiBody: [ATTACK, MOVE],
     minAbsEnergyAvailable: 2000,
     minEnergyAvailable: 0.5,
     maxMulti:  7,
