@@ -35,8 +35,6 @@ var mod = {
                         filter: {'color': COLOR_RED, 'secondaryColor': COLOR_BLUE }
                     },
                 },
-                //COLOR_PURPLE,
-                //COLOR_BLUE,
                 //COLOR_CYAN,
                 // COLOR_GREEN
                 defense: { // point to gather troops
