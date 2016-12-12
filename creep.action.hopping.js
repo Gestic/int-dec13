@@ -17,18 +17,24 @@ if(this.hits === this.hitsMax){
     console.log('off to war');
 }
 */
-if(this.hits < this.hitsMax){
-    action.newTarget = function(creep){
-        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
-    };
-    console.log('run bitches');
-    //Creep.action.healing;
-}
-else{
-    action.newTarget = function(creep){
-        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
-    };
-    console.log('off to war');
+action.work = function(creep){
+    let ret = OK;
+    if(creep.hits < creep.hitsMax){
+        action.newTarget = function(creep){
+            //return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
+            ret = (creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome));
+        };
+        console.log('run beaches');
+        //Creep.action.healing;
+    }
+    else{
+        action.newTarget = function(creep){
+            //return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
+            ret = (creep.target = FlagDir.find(FLAG_COLOR.invade.hopper));
+        };
+        console.log('off to war');
+    }
+    return ret;
 }
 action.step = function(creep){
     if(CHATTY) creep.say(this.name, SAY_PUBLIC);
