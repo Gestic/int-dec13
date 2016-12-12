@@ -18,7 +18,7 @@ if(this.hits === this.hitsMax){
 }
 */
 action.work = function(creep){
-    let ret = OK;
+    let ret;
     if(creep.hits < creep.hitsMax){
         action.newTarget = function(creep){
             //return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
@@ -34,8 +34,10 @@ action.work = function(creep){
         };
         console.log('off to war');
     }
+    console.log(ret);
     return ret;
 }
+
 action.step = function(creep){
     if(CHATTY) creep.say(this.name, SAY_PUBLIC);
     let range = creep.pos.getRangeTo(creep.target);
@@ -50,8 +52,9 @@ action.step = function(creep){
             return;
         }
     }
-if( creep.target )
-    creep.drive( creep.target.pos, this.reachedRange, this.targetRange, range );
+    if( creep.target ){
+        creep.drive( creep.target.pos, this.reachedRange, this.targetRange, range );
+    }
 };
 this.assign = function(creep, target){
     if( target === undefined ) target = this.newTarget(creep);
