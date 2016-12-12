@@ -18,6 +18,7 @@ module.exports = {
     },
     nextAction: function(creep){
         let priority = [
+            Creep.action.travelling,
             Creep.action.hopping,
             //Creep.action.healing,
             Creep.action.idle

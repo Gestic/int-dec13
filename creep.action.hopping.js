@@ -1,55 +1,49 @@
 var action = new Creep.Action('hopping');
-action.isAddableAction = function(){ return true; };
-action.isAddableTarget = function(){ return true; };
-action.isValidTarget = function(target){
-    return ( target != null &&
-        target.hits != null &&
-        target.hits < target.hitsMax &&
-        target.my );
-};
-var flagHop = FlagDir.filter(FLAG_COLOR.invade.hopper);
-var flagHopHome = FlagDir.filter(FLAG_COLOR.invade.hopperHome);
-console.log(flagHop[0]);
 action.newTarget = function(creep){
-    //if(creep.room.casualties.length > 0){
-        //return creep.room.casualties[0];
-    //}
-    if(flagHop.length > 0){
-        return flagHop[0];
+    if(creep.hits === creep.hitsMax){
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
     }
-    /*
-    if(creep.hits === creep.hitMax && creep.pos != flagHop.pos){
-        //creep.moveTo(flagHop.pos);
-        return flag = flagHop;
+    if(creep.hits < (creep.hitsMax-10)){
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
     }
-    if(creep.hits < (creep.hitsMax-10) && creep.pos === flagHop.pos) {
-        //creep.moveTo(flagHopHome.pos);
-        return flag = flagHopHome;
+};
+action.step = function(creep){
+    if(CHATTY) creep.say(this.name, SAY_PUBLIC);
+    let range = creep.pos.getRangeTo(creep.target);
+    if( range <= this.targetRange ) {
+        var workResult = this.work(creep);
+        if( workResult != OK ) {
+            if( DEBUG ) logErrorCode(creep, workResult);
+            delete creep.data.actionName;
+            delete creep.data.targetId;
+            creep.action = null;
+            creep.target = null;
+            return;
+        }
     }
-    */
+    if( creep.target )
+        creep.drive( creep.target.pos, this.reachedRange, this.targetRange, range );
+};
+this.validateActionTarget = function(creep, target){
+    if( this.isValidAction(creep) ){ // validate target or new
+        if( !this.isValidTarget(target)){
+            if( this.renewTarget ){ // invalid. try to find a new one...
+                delete creep.data.path;
+                return this.newTarget(creep);
+            }
+        } else return target;
+    }
     return null;
 };
-action.work = function(creep){
-    
-    if(creep.hits === creep.hitMax && creep.pos != flagHop.pos){
-        creep.moveTo(flagHop.pos);
-    }
-    if(creep.hits < (creep.hitsMax-10) && creep.pos === flagHop.pos) {
-        creep.moveTo(flagHopHome.pos);
-    }
-    /*
-    if( creep.target.hits < creep.target.hitsMax ){
-        if( creep.pos.isNearTo(creep.target) ){
-            return creep.heal(creep.target);
+this.assign = function(creep, target){
+    if( target === undefined ) target = this.newTarget(creep);
+    if( target != null ) {
+        if( creep.action == null || creep.action.name != this.name || creep.target == null || creep.target.id != target.id ) {
+            Population.registerAction(creep, this, target);
+            this.onAssignment(creep, target);
         }
-        if(creep.pos.inRangeTo(creep.target, 3)) {
-            return creep.rangedHeal(creep.target);
-        }
-        return OK;
+        return true;
     }
-    */
-};
-action.onAssignment = function(creep, target) {
-    if( SAY_ASSIGNMENT ) creep.say(String.fromCharCode(9960), SAY_PUBLIC);
+    return false;
 };
 module.exports = action;
