@@ -1,12 +1,35 @@
 var action = new Creep.Action('hopping');
+/*
 action.newTarget = function(creep){
     if(creep.hits === creep.hitsMax){
         return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
     }
     if(creep.hits < (creep.hitsMax-10)){
-        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome) && Creep.action.healing;
     }
 };
+*/
+/*
+if(this.hits === this.hitsMax){
+    action.newTarget = function(creep){
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
+    };
+    console.log('off to war');
+}
+*/
+if(this.hits < this.hitsMax){
+    action.newTarget = function(creep){
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopperHome);
+    };
+    console.log('run bitches');
+    //Creep.action.healing;
+}
+else{
+    action.newTarget = function(creep){
+        return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
+    };
+    console.log('off to war');
+}
 action.step = function(creep){
     if(CHATTY) creep.say(this.name, SAY_PUBLIC);
     let range = creep.pos.getRangeTo(creep.target);
@@ -21,19 +44,8 @@ action.step = function(creep){
             return;
         }
     }
-    if( creep.target )
-        creep.drive( creep.target.pos, this.reachedRange, this.targetRange, range );
-};
-this.validateActionTarget = function(creep, target){
-    if( this.isValidAction(creep) ){ // validate target or new
-        if( !this.isValidTarget(target)){
-            if( this.renewTarget ){ // invalid. try to find a new one...
-                delete creep.data.path;
-                return this.newTarget(creep);
-            }
-        } else return target;
-    }
-    return null;
+if( creep.target )
+    creep.drive( creep.target.pos, this.reachedRange, this.targetRange, range );
 };
 this.assign = function(creep, target){
     if( target === undefined ) target = this.newTarget(creep);
