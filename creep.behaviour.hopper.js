@@ -18,21 +18,22 @@ module.exports = {
         }
     },
     nextAction: function(creep){
-       var priority = [];
+       //var priority = [];
        /* let priority = [
             Creep.action.healing,
             Creep.action.hopping,
             //Creep.action.healing,
             Creep.action.idle
         ];*/
-        /*
+        
         let priority = [
             //Creep.action.travelling,
             Creep.action.hopping,
             Creep.action.healing,
             Creep.action.idle
         ];
-        */
+        
+        /*
         if(creep.hits === creep.hitsMax){
             priority = [
                 Creep.action.hopping
@@ -43,6 +44,7 @@ module.exports = {
                 Creep.action.healing
             ];
         }
+        */
         for(var iAction = 0; iAction < priority.length; iAction++) {
             var action = priority[iAction];
             if(action.isValidAction(creep) &&
