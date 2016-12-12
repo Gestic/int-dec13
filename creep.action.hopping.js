@@ -40,7 +40,8 @@ action.work = function(creep){
             else {
                 creep.rangedHeal(injured[0]);
             }
-        return; // wait for healing
+        //return; // wait for healing
+        return workResult = OK;
         }
         console.log('ruuun');
         return workResult = OK;
@@ -50,12 +51,13 @@ action.work = function(creep){
             return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
         };
         console.log('off to war');
-         return workResult = OK;
+        return workResult = OK;
     }
     else{
         action.newTarget = function(creep){
             return creep.target = FlagDir.find(FLAG_COLOR.invade.hopper);
         };
+        console.log('oops');
         return workResult = OK;
     }
 }
