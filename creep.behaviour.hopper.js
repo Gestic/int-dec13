@@ -3,7 +3,7 @@ module.exports = {
     run: function(creep) {
         // Assign next Action
         let oldTargetId = creep.data.targetId;
-        if( creep.action == null || ['hopping','idle'].includes(creep.action.name)) {
+        if( creep.action == null || ['hopping'].includes(creep.action.name)) {
             this.nextAction(creep);
         }
         if( creep.data.targetId != oldTargetId ) {
@@ -30,6 +30,7 @@ module.exports = {
             //Creep.action.travelling,
             Creep.action.hopping,
             Creep.action.healing,
+            Creep.action.healing,
             Creep.action.idle
         ];
         
@@ -38,13 +39,18 @@ module.exports = {
             priority = [
                 Creep.action.hopping
             ];
+            console.log('b');
         }
-        if(creep.hits < (creep.hitsMax-10)){
+        if(creep.hits < (creep.hitsMax-50)){
             priority = [
+
                 Creep.action.healing
             ];
+            console.log('a');
         }
         */
+        
+        console.log(creep.hits + ' / ' + creep.hitsMax);
         for(var iAction = 0; iAction < priority.length; iAction++) {
             var action = priority[iAction];
             if(action.isValidAction(creep) &&
