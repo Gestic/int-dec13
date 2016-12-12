@@ -1,12 +1,9 @@
 module.exports = {
     name: 'hopper',
     run: function(creep) {
-        creep.flee = creep.flee || !creep.hasActiveOffensivePart();
-        creep.attacking = false;
-        creep.attackingRanged = false;
         // Assign next Action
         let oldTargetId = creep.data.targetId;
-        if( creep.action == null || creep.action.name == 'hopping' || creep.action.name == 'idle' ) {
+        if( creep.action == null || ['hopping','idle'].includes(creep.action.name)) {
             this.nextAction(creep);
         }
         if( creep.data.targetId != oldTargetId ) {
@@ -18,25 +15,8 @@ module.exports = {
         } else {
             logError('Creep without action/activity!\nCreep: ' + creep.name + '\ndata: ' + JSON.stringify(creep.data));
         }
-
-        // Heal self
-        if( creep.data.body.heal !== undefined && creep.hits < creep.hitsMax ){
-            creep.heal(creep);
-        }
-        // Heal other
-        else if( !creep.attackingRanged && creep.room.casualties.length > 0 ){
-            let injured = creep.pos.findInRange(creep.room.casualties, 3);
-            if( injured.length > 0 ){
-                if(creep.pos.isNearTo(injured[0])) {
-                    creep.heal(injured[0]);
-                }
-                else {
-                    creep.rangedHeal(injured[0]);
-                }
-            }
-        }
     },
-     nextAction: function(creep){
+    nextAction: function(creep){
         let priority = [
             Creep.action.hopping,
             //Creep.action.healing,

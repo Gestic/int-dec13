@@ -25,7 +25,7 @@ var mod = {
             upgrading: require('./creep.action.upgrading'),
             withdrawing: require('./creep.action.withdrawing'),
             robbing:require('./creep.action.robbing'),
-            //hopper:require('./creep.action.hopping'),
+            hopping:require('./creep.action.hopping'),
             reallocating:require('./creep.action.reallocating')
         };
         Creep.behaviour = {
@@ -40,7 +40,7 @@ var mod = {
             ranger: require('./creep.behaviour.ranger'),
             upgrader: require('./creep.behaviour.upgrader'),
             warrior: require('./creep.behaviour.warrior'),
-           // hopper: require('./creep.behaviour.hopper'),
+            hopper: require('./creep.behaviour.hopper'),
             worker: require('./creep.behaviour.worker')
         };
         Creep.setup = {
@@ -55,7 +55,7 @@ var mod = {
             ranger: require('./creep.setup.ranger'),
             upgrader: require('./creep.setup.upgrader'),
             warrior: require('./creep.setup.warrior'),
-           // hopper: require('./creep.setup.hopper'),
+            hopper: require('./creep.setup.hopper'),
             worker: require('./creep.setup.worker')
         };
         Creep.loop = function(){

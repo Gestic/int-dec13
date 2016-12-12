@@ -1,8 +1,7 @@
 var setup = new Creep.Setup('hopper');
 setup.minControllerLevel = 4;
 setup.globalMeasurement = true;
-setup.measureByHome = false;
-
+setup.measureByHome = true;
 setup.maxCount = function(room){
     let maxRange = 3;
     let max = 0;
@@ -14,32 +13,32 @@ setup.maxCount = function(room){
         flag = Game.flags[flagEntry.name];
         if( !flag.targetOf || flag.targetOf.length == 0 )
             max++;
-            max++;
     }
     let flagEntries = FlagDir.filter(FLAG_COLOR.invade.hopper);
     flagEntries.forEach(calcMax);
     return max;
 };
-
-setup.mid = {
+setup.default = {
     fixedBody: [], 
     multiBody: [TOUGH, MOVE, MOVE, HEAL], 
     minAbsEnergyAvailable: 360, 
-    minEnergyAvailable: 0.5,
+    minEnergyAvailable: 0.3,
     maxMulti: 7, 
     minMulti: 3, 
-    maxCount: setup.maxCount,
+    //maxCount: setup.maxCount,
+    maxCount: 1,
     maxWeight: 2520
+     //maxWeight: null
 };
 
 setup.RCL = {
     1: setup.none,
     2: setup.none,
     3: setup.none,
-    4: setup.mid,
-    5: setup.mid,
-    6: setup.mid,
-    7: setup.mid,
-    8: setup.mid
+    4: setup.default,
+    5: setup.default,
+    6: setup.default,
+    7: setup.default,
+    8: setup.default
 };
 module.exports = setup;
