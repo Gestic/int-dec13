@@ -12,8 +12,8 @@ setup.maxCount = function(room){
             return;
         flag = Game.flags[flagEntry.name];
         if( !flag.targetOf || flag.targetOf.length == 0 )
-            max++;
-            max++;
+            max ++;
+            max ++;
     }
     let flagEntries = FlagDir.filter(FLAG_COLOR.invade.hopper);
     flagEntries.forEach(calcMax);
@@ -22,13 +22,11 @@ setup.maxCount = function(room){
 setup.default = {
     fixedBody: [], 
     multiBody: [TOUGH, MOVE, MOVE, HEAL], 
-    minAbsEnergyAvailable: 360, 
-    minEnergyAvailable: 0.3,
-    maxMulti: 7, 
+    minAbsEnergyAvailable: 1080, 
+    minEnergyAvailable: 0.4,
+    maxMulti: 12, 
     minMulti: 3, 
     maxCount: setup.maxCount,
-    //maxCount: 1,
-    //maxWeight: 2520
     maxWeight: null
 };
 
