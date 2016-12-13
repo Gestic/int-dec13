@@ -17,7 +17,8 @@ module.exports = {
     nextAction: function(creep){
         
         let priority = [
-            Creep.action.hopping
+            Creep.action.hopping,
+            Creep.action.idle
         ];
         
         for(var iAction = 0; iAction < priority.length; iAction++) {
