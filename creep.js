@@ -1,59 +1,62 @@
 var mod = {
     extend: function(){
-        Creep.Action = load("creep.Action"),
-        Creep.Setup = load("creep.Setup"),
+        Creep.Action = require('./creep.Action'),
+        Creep.Setup = require('./creep.Setup'),
         Creep.action = {
-            building: load("creep.action.building"), 
-            charging: load("creep.action.charging"),
-            claiming: load("creep.action.claiming"),
-            defending: load("creep.action.defending"),
-            dismantling: load("creep.action.dismantling"),
-            feeding: load("creep.action.feeding"), 
-            fortifying: load("creep.action.fortifying"), 
-            fueling: load("creep.action.fueling"), 
-            guarding: load("creep.action.guarding"), 
-            harvesting: load("creep.action.harvesting"),
-            healing: load("creep.action.healing"),
-            idle: load("creep.action.idle"),
-            invading: load("creep.action.invading"),
-            picking: load("creep.action.picking"), 
-            repairing: load("creep.action.repairing"), 
-            reserving: load("creep.action.reserving"),
-            travelling: load("creep.action.travelling"), 
-            storing: load("creep.action.storing"), 
-            uncharging: load("creep.action.uncharging"),
-            upgrading: load("creep.action.upgrading"), 
-            withdrawing: load("creep.action.withdrawing"),
-            robbing:load("creep.action.robbing"),
-            reallocating:load("creep.action.reallocating")
+            building: require('./creep.action.building'),
+            charging: require('./creep.action.charging'),
+            claiming: require('./creep.action.claiming'),
+            reserving: require('./creep.action.reserving'),
+            defending: require('./creep.action.defending'),
+            dismantling: require('./creep.action.dismantling'),
+            feeding: require('./creep.action.feeding'),
+            fortifying: require('./creep.action.fortifying'),
+            fueling: require('./creep.action.fueling'),
+            guarding: require('./creep.action.guarding'),
+            harvesting: require('./creep.action.harvesting'),
+            healing: require('./creep.action.healing'),
+            idle: require('./creep.action.idle'),
+            invading: require('./creep.action.invading'),
+            picking: require('./creep.action.picking'),
+            repairing: require('./creep.action.repairing'),
+            travelling: require('./creep.action.travelling'),
+            storing: require('./creep.action.storing'),
+            uncharging: require('./creep.action.uncharging'),
+            upgrading: require('./creep.action.upgrading'),
+            withdrawing: require('./creep.action.withdrawing'),
+            robbing:require('./creep.action.robbing'),
+            hopping:require('./creep.action.hopping'),
+            reallocating:require('./creep.action.reallocating')
         };
         Creep.behaviour = {
-            claimer: load("creep.behaviour.claimer"),
-            hauler: load("creep.behaviour.hauler"),
-            healer: load("creep.behaviour.healer"),
-            melee: load("creep.behaviour.melee"),
-            miner: load("creep.behaviour.miner"),
-            mineralMiner: load("creep.behaviour.mineralMiner"),
-            pioneer: load("creep.behaviour.pioneer"),
-            privateer: load("creep.behaviour.privateer"),
-            ranger: load("creep.behaviour.ranger"),
-            upgrader: load("creep.behaviour.upgrader"),
-            warrior: load("creep.behaviour.warrior"),
-            worker: load("creep.behaviour.worker")
+            claimer: require('./creep.behaviour.claimer'),
+            hauler: require('./creep.behaviour.hauler'),
+            healer: require('./creep.behaviour.healer'),
+            melee: require('./creep.behaviour.melee'),
+            miner: require('./creep.behaviour.miner'),
+            mineralMiner: require('./creep.behaviour.mineralMiner'),
+            pioneer: require('./creep.behaviour.pioneer'),
+            privateer: require('./creep.behaviour.privateer'),
+            ranger: require('./creep.behaviour.ranger'),
+            upgrader: require('./creep.behaviour.upgrader'),
+            warrior: require('./creep.behaviour.warrior'),
+            hopper: require('./creep.behaviour.hopper'),
+            worker: require('./creep.behaviour.worker')
         };
         Creep.setup = {
-            claimer: load("creep.setup.claimer"),
-            hauler: load("creep.setup.hauler"),
-            healer: load("creep.setup.healer"), 
-            melee: load("creep.setup.melee"),
-            miner: load("creep.setup.miner"),
-            mineralMiner: load("creep.setup.mineralMiner"),
-            pioneer: load("creep.setup.pioneer"),
-            privateer: load("creep.setup.privateer"),
-            ranger: load("creep.setup.ranger"),
-            upgrader: load("creep.setup.upgrader"),
-            warrior: load("creep.setup.warrior"),
-            worker: load("creep.setup.worker")
+            claimer: require('./creep.setup.claimer'),
+            hauler: require('./creep.setup.hauler'),
+            healer: require('./creep.setup.healer'),
+            melee: require('./creep.setup.melee'),
+            miner: require('./creep.setup.miner'),
+            mineralMiner: require('./creep.setup.mineralMiner'),
+            pioneer: require('./creep.setup.pioneer'),
+            privateer: require('./creep.setup.privateer'),
+            ranger: require('./creep.setup.ranger'),
+            upgrader: require('./creep.setup.upgrader'),
+            warrior: require('./creep.setup.warrior'),
+            hopper: require('./creep.setup.hopper'),
+            worker: require('./creep.setup.worker')
         };
         Creep.loop = function(){
             var run = creep => creep.run();
@@ -92,9 +95,6 @@ var mod = {
 
         Creep.prototype.run = function(behaviour){
             if( !this.spawning ){
-                if( this.data && this.ticksToLive == ( this.data.body.claim !== undefined ? 499 : 1499 )) {
-                    Task.handleNewCreep(this);
-                }
                 if(!behaviour && this.data && this.data.creepType) {
                     behaviour = Creep.behaviour[this.data.creepType];
                 }

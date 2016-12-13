@@ -1,27 +1,14 @@
 var mod = {
     init: function(params){
-        Creep.extend = load("creep").extend;
-        Room.extend = load("room").extend;
-        Spawn.extend = load("spawn").extend;
+        Creep.extend = require('./creep').extend;
+        Room.extend = require('./room').extend;
+        Spawn.extend = require('./spawn').extend;
         _.assign(global, params);
         _.assign(global, {
-            LiteEvent: function() {
-                this.handlers = [];
-                this.on = function(handler) {
-                    this.handlers.push(handler);
-                }
-                this.off = function(handler) {
-                    this.handlers = this.handlers.filter(h => h !== handler);
-                }
-                this.trigger = function(data) {
-                    this.handlers.slice(0).forEach(h => h(data)); 
-                }
-            },
-            Extensions: load("extensions"),
-            Population: load("population"),
-            FlagDir: load("flagDir"),
-            Task: load("task"),
-            Tower: load("tower"),
+            Extensions: require('./extensions'),
+            Population: require('./population'),
+            FlagDir: require('./flagDir'),
+            Tower: require('./tower'),
             FLAG_COLOR: {
                 invade: { // destroy everything enemy in the room
                     color: COLOR_RED,
@@ -37,9 +24,17 @@ var mod = {
                         secondaryColor: COLOR_YELLOW,
                         filter: {'color': COLOR_RED, 'secondaryColor': COLOR_YELLOW }
                     },
+                    hopper: { // the room where tower is
+                        color: COLOR_RED,
+                        secondaryColor: COLOR_PURPLE,
+                        filter: {'color': COLOR_RED, 'secondaryColor': COLOR_PURPLE }
+                    },
+                    hopperHome: { // room to heal in
+                        color: COLOR_RED,
+                        secondaryColor: COLOR_BLUE,
+                        filter: {'color': COLOR_RED, 'secondaryColor': COLOR_BLUE }
+                    },
                 },
-                //COLOR_PURPLE,
-                //COLOR_BLUE,
                 //COLOR_CYAN,
                 // COLOR_GREEN
                 defense: { // point to gather troops
@@ -229,9 +224,6 @@ var mod = {
             },
             unpave: function(roomname){
 
-            }, 
-            reloadModules: () => {
-                reload = true;
             }
         });
     }

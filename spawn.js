@@ -6,24 +6,25 @@ var mod = {
                 Creep.setup.worker,
                 Creep.setup.hauler,
                 Creep.setup.upgrader,
-//                Creep.setup.warrior,
-//                Creep.setup.melee,
-//                Creep.setup.ranger,
+                Creep.setup.warrior,
+                Creep.setup.melee,
+                Creep.setup.ranger,
                 Creep.setup.healer,
                 Creep.setup.pioneer,
                 Creep.setup.privateer,
-                Creep.setup.claimer];
+                Creep.setup.claimer,
+                Creep.setup.hopper];
         Spawn.prototype.loop = function(){
             if( this.spawning ) return;
             let room = this.room;
             let busy = this.createCreepByQueue(room.spawnQueueHigh);
+            if( !busy ) busy = this.createCreepByQueue(room.spawnQueueLow);
             if( !busy && Game.time % SPAWN_INTERVAL == 0 ) {
                 let that = this;
                 let probe = setup => {
                     return setup.isValidSetup(room) && that.createCreepBySetup(setup);
                 }
-                busy = _.some(this.priority, probe);
-                if( !busy ) busy = this.createCreepByQueue(room.spawnQueueLow);
+                _.find(this.priority, probe);
             }
         };
         Spawn.prototype.createCreepBySetup = function(setup){
@@ -35,24 +36,6 @@ var mod = {
         Spawn.prototype.createCreepByQueue = function(queue){
             if( !queue || queue.length == 0 ) return null;
             let params = queue.shift();
-            let cost = 0;
-            params.parts.forEach(function(part){
-                cost += BODYPART_COST[part];
-            });
-            // wait with spawn until enough resources are available
-            if (cost > this.room.energyAvailable) {
-                if (cost > this.room.energyCapacityAvailable) {
-                    console.log( dye(CRAYON.system, this.pos.roomName + ' &gt; ') + dye(CRAYON.error, 'Queued creep too big for room: ' + JSON.stringify(params) ) );
-                    return false;
-                }
-                queue.unshift(params);
-                return true;
-            }
-            var completeName;
-            for (var son = 1; completeName == null || Game.creeps[completeName]; son++) {
-             completeName = params.name + '-' + son;
-            }
-            params.name = completeName;
             return this.create(params.parts, params.name, params.setup, params.destiny);
         };
         Spawn.prototype.create = function(body, name, type, destiny){
